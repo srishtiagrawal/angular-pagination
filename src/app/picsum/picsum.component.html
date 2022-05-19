@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4" *ngFor="let i of picsum | async">
+      <div class="card">
+        <img class="image-cover" [src]="i.download_url" />
+        <h1 class="author-text">{{ i.author }}</h1>
+      </div>
+    </div>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination mt-4">
+      <li class="page-item"><a class="page-link"  (click)="pagination.onFirst()">First</a></li>
+      <li class="page-item" (click)="pagination.onPrevious()"><a class="page-link" >Previous</a></li>
+      <input
+        appPagination
+        #pagination="pagination"
+        type="number"
+        min="1"
+        max="5"
+        [totalPages]="5"
+        value="1"
+        (onChangeEventEmitter)="onPageChange($event)"
+      />
+      <li class="page-item">
+        <a class="page-link" (click)="pagination.onNext()">Next</a>
+      </li>
+      <li class="page-item"><a class="page-link"  (click)="pagination.onLast()">Last</a></li>
+    </ul>
+  </nav>
+</div>
